@@ -104,7 +104,7 @@ async function handleLogin() {
 
 onMounted(async () => {
   try {
-    const res = await fetch('/news.php')
+    const res = await fetch('/api/news.php')
     if (!res.ok) throw new Error('Fehler beim Laden')
     news.value = await res.json()
   } catch (e) {
