@@ -7,6 +7,10 @@ const routes = [
   { path: '/', component: Home },
   { path: '/login', component: () => import('../views/Login.vue') },
   { path: '/register', component: () => import('../views/Register.vue') },
+  { path: '/impressum', component: () => import('../views/Impressum.vue') },
+  { path: '/datenschutz', component: () => import('../views/Datenschutz.vue') },
+  { path: '/agb', component: () => import('../views/AGB.vue') },
+  { path: '/kontakt', component: () => import('../views/Kontakt.vue') },
   {
     path: '/dashboard',
     component: Dashboard,
