@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
+import NutritionSearch from "@/views/NutritionSearch.vue";
 
 const routes = [
   { path: '/', component: Home },
@@ -14,6 +15,11 @@ const routes = [
   {
     path: '/dashboard',
     component: Dashboard,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/nutritionSearch',
+    component: NutritionSearch,
     meta: { requiresAuth: true }
   },
 ]
