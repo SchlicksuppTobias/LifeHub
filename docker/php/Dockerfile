@@ -1,5 +1,5 @@
-# Basisimage PHP-FPM 8.2
-FROM php:8.2-fpm
+# Basisimage PHP-FPM 8.5
+FROM php:8.5-fpm
 
 # Systempakete installieren und mysqli aktivieren
 RUN apt-get update && apt-get install -y \

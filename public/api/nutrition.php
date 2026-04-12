@@ -1,8 +1,21 @@
 <?php
+
+use Tobias\LifeHub\shared\Factory\AppFactory;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 
+$factory = new AppFactory();
+
+$envHandler = $factory->getEnvHandler();
+
+$host = $envHandler->getEnv('DB_HOST');
+$user = $envHandler->getEnv('DB_USERNAME');
+$pass = $envHandler->getEnv('DB_PASSWORD');
+$dbname = $envHandler->getEnv('DB_DATABASE');
 class Database
 {
     private mysqli $conn;
@@ -85,8 +98,9 @@ class NutritionController
     }
 }
 
-// ── Bootstrap ──────────────────────────────────────────────────────────
-$db         = new Database('mariadb', 'root', 'root', 'LifeHub');
+
+
+$db = new Database($host, $user, $pass, $dbname);
 $repo       = new NutritionRepository($db);
 $controller = new NutritionController($repo);
 
