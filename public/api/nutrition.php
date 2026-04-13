@@ -1,6 +1,10 @@
 <?php
 
+use Tobias\LifeHub\components\nutriSearch\NutritionController;
+use Tobias\LifeHub\shared\exceptions\DatabaseException;
 use Tobias\LifeHub\shared\Factory\AppFactory;
+use Tobias\LifeHub\shared\infrastructure\mariaDbConnection\MariaDbConnection;
+use Tobias\LifeHub\shared\infrastructure\mariaDbConnection\NutritionRepository;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -16,94 +20,19 @@ $host = $envHandler->getEnv('DB_HOST');
 $user = $envHandler->getEnv('DB_USERNAME');
 $pass = $envHandler->getEnv('DB_PASSWORD');
 $dbname = $envHandler->getEnv('DB_DATABASE');
-class Database
-{
-    private mysqli $conn;
 
-    public function __construct(string $host, string $user, string $pass, string $dbname)
-    {
-        $this->conn = new mysqli($host, $user, $pass, $dbname);
+try {
+    $connection = new MariaDbConnection($host, $user, $pass, $dbname);
 
-        if ($this->conn->connect_error) {
-            http_response_code(500);
-            echo json_encode(['error' => 'DB-Verbindung fehlgeschlagen: ' . $this->conn->connect_error]);
-            exit;
-        }
-    }
+    $repo = new NutritionRepository($connection);
+    $controller = new NutritionController($repo);
 
-    public function getConnection(): mysqli
-    {
-        return $this->conn;
-    }
+    $search = $_GET['search'] ?? '';
 
-    public function close(): void
-    {
-        $this->conn->close();
-    }
+    $data = $controller->handle($search);
+
+    echo json_encode($data);
+} catch (DatabaseException $e) {
+    http_response_code(500);
+    echo json_encode(['error' => $e->getMessage()]);
 }
-
-class NutritionRepository
-{
-    public function __construct(private Database $db) {}
-
-    public function getAll(): array
-    {
-        $result = $this->db->getConnection()->query(
-            "SELECT * FROM NutritionContents ORDER BY name_de ASC LIMIT 100"
-        );
-
-        if (!$result) {
-            http_response_code(500);
-            echo json_encode(['error' => 'Abfrage fehlgeschlagen: ' . $this->db->getConnection()->error]);
-            exit;
-        }
-
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function search(string $term): array
-    {
-        $stmt = $this->db->getConnection()->prepare(
-            "SELECT * FROM NutritionContents WHERE name_de LIKE ? ORDER BY name_de ASC LIMIT 100"
-        );
-        $like = '%' . $term . '%';
-        $stmt->bind_param('s', $like);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        if (!$result) {
-            http_response_code(500);
-            echo json_encode(['error' => 'Abfrage fehlgeschlagen: ' . $this->db->getConnection()->error]);
-            exit;
-        }
-
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-}
-
-class NutritionController
-{
-    public function __construct(private NutritionRepository $repo) {}
-
-    public function handle(): void
-    {
-        $search = isset($_GET['search']) ? trim($_GET['search']) : '';
-
-        $rows = $search !== ''
-            ? $this->repo->search($search)
-            : $this->repo->getAll();
-
-        echo json_encode($rows);
-    }
-}
-
-
-
-$db = new Database($host, $user, $pass, $dbname);
-$repo       = new NutritionRepository($db);
-$controller = new NutritionController($repo);
-
-$controller->handle();
-
-$db->close();
