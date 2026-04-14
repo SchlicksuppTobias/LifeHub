@@ -73,6 +73,7 @@ const loginForm = ref({ email: '', password: '' })
 async function handleLogin() {
   loginError.value = null
   loginLoading.value = true
+
   try {
     const res = await fetch('/api/login.php', {
       method: 'POST',
@@ -83,14 +84,13 @@ async function handleLogin() {
     const data = await res.json()
 
     if (!res.ok) {
-      // PHP gibt z. B. { "error": "Falsches Passwort" } zurück
-      throw new Error(data.error || 'Anmeldung fehlgeschlagen')
+      throw new Error(data.error || data.message || 'Login fehlgeschlagen')
     }
 
-    // Optionaler Token speichern, falls die API einen mitschickt
-    if (data.token) {
-      localStorage.setItem('token', data.token)
-    }
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('user_id', data.user_id)
+
+    loginForm.value = { email: '', password: '' }
 
     showLogin.value = false
     router.push('/dashboard')

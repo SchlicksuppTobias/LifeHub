@@ -3,10 +3,10 @@ import { useAuthStore } from '../stores/auth'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import NutritionSearch from "@/views/NutritionSearch.vue";
+import Profile from "@/views/Profile.vue";
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/login', component: () => import('../views/Login.vue') },
   { path: '/register', component: () => import('../views/Register.vue') },
   { path: '/impressum', component: () => import('../views/Impressum.vue') },
   { path: '/datenschutz', component: () => import('../views/Datenschutz.vue') },
@@ -20,6 +20,11 @@ const routes = [
   {
     path: '/nutritionSearch',
     component: NutritionSearch,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/profile',
+    component: Profile,
     meta: { requiresAuth: true }
   },
 ]
