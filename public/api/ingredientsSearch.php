@@ -4,6 +4,7 @@ use Tobias\LifeHub\components\nutriSearch\NutritionController;
 use Tobias\LifeHub\shared\exceptions\DatabaseException;
 use Tobias\LifeHub\shared\Factory\AppFactory;
 use Tobias\LifeHub\shared\infrastructure\mariaDbConnection\MariaDbConnection;
+use Tobias\LifeHub\shared\infrastructure\mariaDbConnection\NutritionRawRepository;
 use Tobias\LifeHub\shared\infrastructure\mariaDbConnection\NutritionRepository;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -24,7 +25,7 @@ $dbname = $envHandler->getEnv('DB_DATABASE');
 try {
     $connection = new MariaDbConnection($host, $user, $pass, $dbname);
 
-    $repo = new NutritionRepository($connection);
+    $repo = new NutritionRawRepository($connection);
     $controller = new NutritionController($repo);
 
     $search = $_GET['search'] ?? '';

@@ -1,0 +1,66 @@
+<?php
+
+$host = "localhost";
+$user = "root";
+$pass = "root";
+$db   = "LifeHub";
+
+$mysqli = new mysqli($host, $user, $pass, $db);
+
+if ($mysqli->connect_error) {
+    die("Verbindungsfehler: " . $mysqli->connect_error);
+}
+
+$mysqli->set_charset("utf8mb4");
+
+/*
+|--------------------------------------------------------------------------
+| Query: eigenständiges Wort 'roh'
+|--------------------------------------------------------------------------
+*/
+$query = "
+SELECT name_de, bls_code
+FROM NutritionContents
+WHERE name_de REGEXP '[[:<:]]roh[[:>:]]';
+";
+
+$result = $mysqli->query($query);
+
+if (!$result) {
+    die("Fehler bei der Abfrage: " . $mysqli->error);
+}
+
+/*
+|--------------------------------------------------------------------------
+| INSERT Datei erzeugen
+|--------------------------------------------------------------------------
+*/
+$sqlOutput  = "-- Auto generated INSERT file\n\n";
+
+$count = 0;
+
+while ($row = $result->fetch_assoc()) {
+    $name = $mysqli->real_escape_string($row['name_de']);
+    $bls  = $mysqli->real_escape_string($row['bls_code']);
+
+    $sqlOutput .= "INSERT INTO nutrition_raw (name_de, bls_code) 
+VALUES ('$name', '$bls');\n";
+
+    $count++;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Datei schreiben
+|--------------------------------------------------------------------------
+*/
+$filename = "nutrition_raw_inserts.sql";
+
+if (file_put_contents($filename, $sqlOutput) === false) {
+    die("Fehler beim Schreiben der Datei.");
+}
+
+echo "$filename wurde erfolgreich erstellt mit $count INSERTS.";
+
+$result->free();
+$mysqli->close();
