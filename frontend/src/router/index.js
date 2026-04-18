@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import NutritionSearch from "@/views/NutritionSearch.vue";
 import Profile from "@/views/Profile.vue";
+import CreateRecipe from "@/views/CreateRecipe.vue";
 
 const routes = [
   { path: '/', component: Home },
@@ -25,6 +26,11 @@ const routes = [
   {
     path: '/profile',
     component: Profile,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/rezepte/erstellen',
+    component: CreateRecipe,
     meta: { requiresAuth: true }
   },
 ]

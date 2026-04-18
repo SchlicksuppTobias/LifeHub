@@ -6,26 +6,56 @@
     </header>
 
     <div class="grid">
-      <button v-for="item in items"
-              :key="item.name"
-              class="square-btn"
-              @click="goTo(item.route)">
-        {{ item.name }}
-      </button>
+      <div
+        v-for="item in items"
+        :key="item.name"
+        class="btn-wrapper"
+      >
+        <button
+          class="square-btn"
+          @click="handleClick(item)"
+        >
+          {{ item.name }}
+        </button>
+
+        <!-- Submenü nur für Rezepte -->
+        <div
+          v-if="item.submenu && activeSubmenu === item.name"
+          class="submenu"
+          @click.stop
+        >
+          <button
+            v-for="sub in item.submenu"
+            :key="sub.label"
+            class="submenu-item"
+            @click="goTo(sub.route); activeSubmenu = null"
+          >
+            {{ sub.label }}
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import {ref} from 'vue'
 import {useAuthStore} from '../stores/auth'
 import {useRouter} from 'vue-router'
 
 const auth = useAuthStore()
 const router = useRouter()
+const activeSubmenu = ref(null)
 
 const items = [
   {name: 'News', route: '/news'},
-  {name: 'Rezepte', route: '/rezepte'},
+  {
+    name: 'Rezepte',
+    submenu: [
+      {label: 'Rezept erstellen', route: '/rezepte/erstellen'},
+      {label: 'Rezepte durchsuchen', route: '/rezepte'},
+    ]
+  },
   {name: 'Einkaufslisten', route: '/einkauf'},
   {name: 'Nährwerttabelle', route: '/nutritionSearch'},
   {name: 'Kalender', route: '/kalender'},
@@ -36,6 +66,15 @@ const items = [
   {name: 'Einstellungen', route: '/einstellungen'},
   {name: 'Shop', route: '/shop'}
 ]
+
+function handleClick(item) {
+  if (item.submenu) {
+    activeSubmenu.value = activeSubmenu.value === item.name ? null : item.name
+  } else {
+    activeSubmenu.value = null
+    goTo(item.route)
+  }
+}
 
 function handleLogout() {
   auth.logout()
@@ -82,7 +121,12 @@ function goTo(route) {
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
+.btn-wrapper {
+  position: relative;
+}
+
 .square-btn {
+  width: 100%;
   aspect-ratio: 1 / 1;
   border: none;
   border-radius: 16px;
@@ -103,6 +147,39 @@ function goTo(route) {
   transform: translateY(-4px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
   background: #eef2f7;
+}
+
+.submenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.submenu-item {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  transition: background 0.15s;
+}
+
+.submenu-item:not(:last-child) {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.submenu-item:hover {
+  background: #f5f7fa;
 }
 
 @media (min-width: 1200px) {

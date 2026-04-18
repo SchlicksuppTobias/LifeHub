@@ -28,12 +28,16 @@ try {
     $controller = new NutritionController($repo);
 
     $search = $_GET['search'] ?? '';
-    var_dump($search);
-    exit();
 
     $data = $controller->handle($search);
+    $slim = array_map(fn($item) => [
+        'id'   => $item['bls_code'],
+        'name' => $item['name_de'],
+    ], $data);
 
-    echo json_encode($data);
+    echo json_encode($slim);
+
+    //echo json_encode($data);
 } catch (DatabaseException $e) {
     http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
