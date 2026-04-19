@@ -21,7 +21,15 @@ $mysqli->set_charset("utf8mb4");
 $query = "
 SELECT name_de, bls_code
 FROM NutritionContents
-WHERE name_de REGEXP '[[:<:]]roh[[:>:]]';
+WHERE
+    (
+        LEFT(bls_code, 1) IN ('K','O','F','G','L','M','N','B','H','T','U','R')
+            OR name_de REGEXP '[[:<:]]roh[[:>:]]'
+        )
+  AND LOWER(name_de) NOT REGEXP
+      'zubereitet|gegart|frittiert|fertiggericht|konserve|tiefkühl|pizza|lasagne|burger|menü|gebraten|gebacken|grill|braten|schmortopf|eintopf|auflauf|suppe|saucen|soßen|dressings|gewürzmischungen'
+  AND LOWER(name_de) NOT REGEXP
+      '(fertig|mix|pulver|sauce|soße|dress|gewürzmisch)';
 ";
 
 $result = $mysqli->query($query);
