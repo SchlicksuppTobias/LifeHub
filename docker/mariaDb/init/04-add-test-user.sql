@@ -1,3 +1,6 @@
+# Testuser credentials:
+# mail: test@test.de
+# password : test
 INSERT INTO `users` (
     `email`,
     `password_hash`,
@@ -6,7 +9,7 @@ INSERT INTO `users` (
 )
 SELECT
     'test@test.de',
-    '$argon2id$v=19$m=65536,t=4,p=1$ZW03a2RFOUw5RGt1ZGE4Tg$uotDswcF2yWhVHQg0Qx5oIuRz9WyLE3Z5mDA2sF/5qU',
+    '$argon2id$v=19$m=65536,t=4,p=1$Qko2c3BqMmExeWRzNHpNbQ$EAkuwx44og86IWAedPev5Nn5iaOsr8DnGDciteN87BQ',
     NOW(),
     1
 WHERE NOT EXISTS (
