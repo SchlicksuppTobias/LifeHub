@@ -14,9 +14,12 @@ Login:
 - Cookies setzen für interne Seiten danach
 Registrieren:
 News:
+- Oberfläche zum erstellen und verwalten von News einbinden
 Wetter:
+- Wetter API einbinden
 Wochenplaner:
 Dashboard:
+- BMI Rechner
 - Wetter
 - Wochenplaner Button
 Rezepte:
