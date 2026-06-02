@@ -1,7 +1,7 @@
 # LifeHub
 LifeHub is a modular personal life management platform that helps you track health data, nutrition, tasks, and daily activities in one unified system.
 
-Heavy work in progress
+Heavy work in progress, still only Prototypes
 
 When  Data is updated, insert excel sheet into "database import backup" folder and run update.php, after that
 you get an nutrition_inserts.sql file which can be added to docker/mariaDb folder init.sql file
