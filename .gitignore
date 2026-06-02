@@ -1,2 +1,3 @@
 /vendor/
 /docker/mariaDb/init/03-create-nutrition-tables.sql
+/database import backup/BLS_4_0_Daten_2025_DE.xlsx
