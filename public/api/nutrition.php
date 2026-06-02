@@ -14,6 +14,7 @@ header('Access-Control-Allow-Methods: GET');
 
 $factory = new AppFactory();
 
+
 $envHandler = $factory->getEnvHandler();
 
 $host = $envHandler->getEnv('DB_HOST');
