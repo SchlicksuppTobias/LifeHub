@@ -3,7 +3,7 @@ LifeHub is a modular personal life management platform that helps you track heal
 
 Heavy work in progress
 
-When BLS Data is updated, insert excel sheet into "database import backup" folder and run yolo.php, after that
+When  Data is updated, insert excel sheet into "database import backup" folder and run update.php, after that
 you get an nutrition_inserts.sql file which can be added to docker/mariaDb folder init.sql file
 
 For Frontend Vue will be used. 
