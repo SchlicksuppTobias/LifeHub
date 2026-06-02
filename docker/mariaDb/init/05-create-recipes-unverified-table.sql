@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `recipes_unverified` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `user_id` BIGINT UNSIGNED NOT NULL,
     `title` VARCHAR(255) NOT NULL,
-    `image_path` VARCHAR(255) NULL DEFAULT NULL,
+    `image_path` TEXT NULL DEFAULT NULL,
     `ingredients` TEXT NOT NULL,
     `instructions` TEXT NOT NULL,
     `prep_time_value` INT UNSIGNED NULL,
