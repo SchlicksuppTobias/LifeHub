@@ -53,7 +53,7 @@ const items = [
     name: 'Rezepte',
     submenu: [
       {label: 'Rezept erstellen', route: '/rezepte/erstellen'},
-      {label: 'Rezepte durchsuchen', route: '/rezepte'},
+      {label: 'Rezepte durchsuchen', route: '/rezepte/anzeigen'},
     ]
   },
   {name: 'Einkaufslisten', route: '/einkauf'},
