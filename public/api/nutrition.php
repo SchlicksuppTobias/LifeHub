@@ -28,8 +28,6 @@ try {
     $controller = new NutritionController($repo);
 
     $search = $_GET['search'] ?? '';
-    var_dump($search);
-    exit();
 
     $data = $controller->handle($search);
 
