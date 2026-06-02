@@ -14,6 +14,7 @@ header('Access-Control-Allow-Methods: GET');
 
 $factory = new AppFactory();
 
+
 $envHandler = $factory->getEnvHandler();
 
 $host = $envHandler->getEnv('DB_HOST');
@@ -28,8 +29,6 @@ try {
     $controller = new NutritionController($repo);
 
     $search = $_GET['search'] ?? '';
-    var_dump($search);
-    exit();
 
     $data = $controller->handle($search);
 
