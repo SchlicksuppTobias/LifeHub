@@ -329,16 +329,18 @@ async function submitRecipe() {
       data.append('rest_time_unit', form.restTime.unit)
     }
 
-    form.ingredients.forEach((ing, i) => {
-      const n = i + 1
-      data.append(`ingredient_${n}_name`, ing.name)
-      data.append(`ingredient_${n}_amount`, ing.amount)
-      data.append(`ingredient_${n}_unit`, ing.unit)
-      if (ing.ingredient_id) {
-        data.append(`ingredient_${n}_id`, ing.ingredient_id)
-      }
-    })
-    data.append('ingredient_count', form.ingredients.length)
+    // form.ingredients.forEach((ing, i) => {
+    //   const n = i + 1
+    //   data.append(`ingredient_${n}_name`, ing.name)
+    //   data.append(`ingredient_${n}_amount`, ing.amount)
+    //   data.append(`ingredient_${n}_unit`, ing.unit)
+    //   if (ing.ingredient_id) {
+    //     data.append(`ingredient_${n}_id`, ing.ingredient_id)
+    //   }
+    // })
+    // data.append
+    data.append('ingredients', JSON.stringify(form.ingredients))
+    data.append('user_id', '1')
 
     const res = await fetch('/api/saveRecipe.php', {
       method: 'POST',

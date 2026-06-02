@@ -51,6 +51,7 @@ Angebote (Supermarkt, Drogerie, etc.):
 Upload von Nutri Daten Excel. (Magic einbauen damit datenbank auch mit anderen Excel Dateien kompatibel ist)
 CI/CD Pipelines aufsetzen
 -Community Forum
-
+- UserId zu Cookie hinzufügen und bei Rezept speichern und Co verwenden
+- GeoDB einbauen Postleitzahl, Name, Bundesland, Breitengrade und Längengrade für Wetter, etc. speichern
 
 
