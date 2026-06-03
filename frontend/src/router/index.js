@@ -6,6 +6,8 @@ import NutritionSearch from "@/views/NutritionSearch.vue";
 import Profile from "@/views/Profile.vue";
 import CreateRecipe from "@/views/CreateRecipe.vue";
 import RecipesView from "@/views/RecipesView.vue";
+import Kalender from "@/views/Kalender.vue";
+import TodoApp from "@/views/TodoApp.vue";
 
 const routes = [
   { path: '/', component: Home },
@@ -37,6 +39,16 @@ const routes = [
   {
     path: '/rezepte/anzeigen',
     component: RecipesView,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/kalender',
+    component: Kalender,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/todo',
+    component: TodoApp,
     meta: { requiresAuth: true }
   },
 ]
