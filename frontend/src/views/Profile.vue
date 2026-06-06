@@ -15,6 +15,7 @@
 
         <div class="grid">
 
+          <!-- Persönliche Daten -->
           <div class="form-group">
             <label>Vorname</label>
             <input v-model="form.first_name" type="text" />
@@ -35,6 +36,7 @@
             <input v-model="form.phone" type="text" />
           </div>
 
+          <!-- Adresse -->
           <div class="form-group">
             <label>Straße</label>
             <input v-model="form.street" type="text" />
@@ -65,19 +67,35 @@
             <input v-model="form.country" type="text" />
           </div>
 
+          <!-- Körperdaten -->
           <div class="form-group">
             <label>Geburtsdatum</label>
             <input v-model="form.birth_date" type="date" />
           </div>
 
           <div class="form-group">
-            <label>Gewicht (kg)</label>
-            <input v-model="form.weight" type="number" />
+            <label>Geschlecht</label>
+            <select v-model="form.gender">
+              <option value="">-- bitte wählen --</option>
+              <option value="männlich">Männlich</option>
+              <option value="weiblich">Weiblich</option>
+              <option value="divers">Divers</option>
+            </select>
           </div>
 
           <div class="form-group">
             <label>Größe (cm)</label>
-            <input v-model="form.height" type="number" />
+            <input v-model="form.height" type="number" min="0" />
+          </div>
+
+          <div class="form-group">
+            <label>Gewicht (kg)</label>
+            <input v-model="form.weight" type="number" min="0" />
+          </div>
+
+          <div class="form-group">
+            <label>Zielgewicht (kg)</label>
+            <input v-model="form.weightGoal" type="number" min="0" />
           </div>
 
           <div class="form-group full">
@@ -93,8 +111,8 @@
 
       </form>
 
-      <div v-if="savedMessage" class="success">
-        {{ savedMessage }}
+      <div v-if="savedMessage" :class="['message', savedMessage.type]">
+        {{ savedMessage.text }}
       </div>
 
     </div>
@@ -123,7 +141,9 @@ const form = ref({
   country: '',
 
   birth_date: '',
+  gender: '',
   weight: '',
+  weightGoal: '',
   height: '',
 
   bio: '',
@@ -145,7 +165,10 @@ async function loadProfile() {
     const json = await res.json()
 
     if (json.success) {
-      form.value = json.data
+      form.value = {
+        ...form.value,
+        ...json.data
+      }
     } else {
       throw new Error(json.message || 'Fehler beim Laden')
     }
@@ -153,7 +176,7 @@ async function loadProfile() {
   } catch (e) {
     console.error(e)
 
-    // fallback (damit UI nicht leer ist)
+    // Fallback-Daten (damit UI nicht leer ist)
     form.value = {
       first_name: 'Max',
       last_name: 'Mustermann',
@@ -168,7 +191,9 @@ async function loadProfile() {
       country: 'Deutschland',
 
       birth_date: '1990-01-01',
+      gender: 'männlich',
       weight: 80,
+      weightGoal: 75,
       height: 180,
 
       bio: 'Ich liebe gutes Essen 🍝',
@@ -214,17 +239,17 @@ async function saveProfile() {
       throw new Error(json.error || 'Speichern fehlgeschlagen')
     }
 
-    savedMessage.value = 'Profil erfolgreich gespeichert!'
+    savedMessage.value = { type: 'success', text: 'Profil erfolgreich gespeichert!' }
+
+  } catch (e) {
+    console.error(e)
+    savedMessage.value = { type: 'error', text: 'Fehler beim Speichern.' }
+  } finally {
+    loading.value = false
 
     setTimeout(() => {
       savedMessage.value = null
     }, 2500)
-
-  } catch (e) {
-    console.error(e)
-    savedMessage.value = 'Fehler beim Speichern'
-  } finally {
-    loading.value = false
   }
 }
 </script>
@@ -270,16 +295,21 @@ async function saveProfile() {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   width: 100%;
   padding: 0.6rem;
   border-radius: 8px;
   border: 1px solid #ddd;
   box-sizing: border-box;
+  background: #fff;
+  font-size: 0.95rem;
+  color: #333;
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   outline: none;
   border-color: #4CAF50;
 }
@@ -297,6 +327,7 @@ async function saveProfile() {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .btn-save:hover {
@@ -308,12 +339,21 @@ async function saveProfile() {
   cursor: not-allowed;
 }
 
-.success {
+.message {
   margin-top: 1rem;
   padding: 0.8rem;
-  background: #eafaf1;
-  color: #2ecc71;
   border-radius: 8px;
   text-align: center;
+  font-weight: 500;
+}
+
+.message.success {
+  background: #eafaf1;
+  color: #2ecc71;
+}
+
+.message.error {
+  background: #fdecea;
+  color: #e74c3c;
 }
 </style>

@@ -8,6 +8,8 @@ import CreateRecipe from "@/views/CreateRecipe.vue";
 import RecipesView from "@/views/RecipesView.vue";
 import Kalender from "@/views/Kalender.vue";
 import TodoApp from "@/views/TodoApp.vue";
+import BMI from "@/views/BMI.vue";
+import NewsEditor from "@/views/NewsEditor.vue";
 
 const routes = [
   { path: '/', component: Home },
@@ -51,6 +53,17 @@ const routes = [
     component: TodoApp,
     meta: { requiresAuth: true }
   },
+  {
+    path: '/bmi',
+    component: BMI,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/news',
+    component: NewsEditor,
+    meta: { requiresAuth: true }
+  },
+
 ]
 
 const router = createRouter({

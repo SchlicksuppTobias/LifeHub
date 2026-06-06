@@ -14,7 +14,8 @@ Login:
 - Cookies setzen für interne Seiten danach
 Registrieren:
 News:
-- Oberfläche zum erstellen und verwalten von News einbinden
+- Oberfläche zum verwalten von News einbinden
+- zurück button
 Wetter:
 - Wetter API einbinden
 Wochenplaner:
@@ -29,14 +30,16 @@ Einkaufsliste:
 Nährwerttabelle:
 - zurück Button
 Kalender:
+- zurück button
 TODO Liste:
+-zurück button
 Sport Tracker:
 Gesundheit Tracker:
 Profil:
-- Ziel Gewicht
-- Kennwort für Verschlüsselung
-- Geschlecht
-- Angaben für Wetter (Postleitzahl ??) je nach API
+-zurück button
+BMI Rechner:
+- zurück button
+
 Einstellungen:
 Impressum:
 Datenschutz:
@@ -50,8 +53,12 @@ Angebote (Supermarkt, Drogerie, etc.):
 
 Upload von Nutri Daten Excel. (Magic einbauen damit datenbank auch mit anderen Excel Dateien kompatibel ist)
 CI/CD Pipelines aufsetzen
--Community Forum
+- Community Forum
 - UserId zu Cookie hinzufügen und bei Rezept speichern und Co verwenden
 - GeoDB einbauen Postleitzahl, Name, Bundesland, Breitengrade und Längengrade für Wetter, etc. speichern
+- andere Repos von mir einbauen
 
+
+-bei Login Token im Backend abspeichern und bei jedem Frontend request validieren ob noch aktuell
+- eigene Id oder ähnliches in profil anzeigen, damit man später damit Einkaufslisten teilen kann usw.
 
