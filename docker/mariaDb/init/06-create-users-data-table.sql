@@ -15,6 +15,9 @@ CREATE TABLE IF NOT EXISTS usersData (
 
     birth_date DATE NULL,
     weight INT NULL,
+    weightGoal INT NULL,
+    gender varchar(20) NULL,
+
     height INT NULL,
 
     bio TEXT NULL,
@@ -40,6 +43,8 @@ INSERT INTO usersData (
     country,
     birth_date,
     weight,
+    weightGoal,
+    gender,
     height,
     bio,
     avatar
@@ -57,6 +62,8 @@ INSERT INTO usersData (
     'Deutschland',
     '1990-01-01',
     80,
+    75,
+    'männlich',
     180,
     'Ich liebe gutes Essen 🍝',
     NULL

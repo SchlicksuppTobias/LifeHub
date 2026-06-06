@@ -38,6 +38,8 @@ try {
             country = ?,
             birth_date = ?,
             weight = ?,
+            weightGoal = ?,
+            gender = ?,
             height = ?,
             bio = ?,
             avatar = ?,
