@@ -4,7 +4,16 @@
 
     <div class="todo-card">
 
-      <h1>TODO Liste</h1>
+      <div class="card-header">
+        <button
+          class="back-btn"
+          @click="$router.push('/dashboard')"
+        >
+          ← Zurück
+        </button>
+
+        <h1>TODO Liste</h1>
+      </div>
 
       <div class="add-form">
         <input
@@ -54,8 +63,8 @@
             >
 
             <span>
-                            {{ todo.title }}
-                        </span>
+              {{ todo.title }}
+            </span>
 
           </div>
 
@@ -277,9 +286,31 @@ export default {
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-h1 {
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin-bottom: 20px;
+}
+
+.card-header h1 {
+  margin: 0;
   font-size: 28px;
+}
+
+.back-btn {
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: #e8e8e8;
 }
 
 .add-form {
