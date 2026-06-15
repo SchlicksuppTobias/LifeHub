@@ -1,5 +1,9 @@
+```vue
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const unit = ref('metric')
 const heightCm = ref(175)
@@ -63,6 +67,10 @@ const needlePos = computed(() => {
 
 <template>
   <div class="container">
+
+    <!-- Back Button -->
+    <button class="back-btn" @click="router.push('/dashboard')">← Zurück</button>
+
     <!-- Header -->
     <div class="header">
       <div class="header-label">Gesundheits-Tool</div>
@@ -209,6 +217,26 @@ const needlePos = computed(() => {
     #f4a261 60%, #f4a261 75%,
     #e63946 75%, #e63946 100%
   );
+}
+
+/* ── Back Button ── */
+.back-btn {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  white-space: nowrap;
+  transition: background 0.2s;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.back-btn:hover {
+  background: var(--bg);
 }
 
 /* ── Header ── */
@@ -548,3 +576,4 @@ input[type='range']::-moz-range-thumb {
   .bmi-big { font-size: 3.5rem; }
 }
 </style>
+```
