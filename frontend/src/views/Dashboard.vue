@@ -65,6 +65,7 @@ const items = [
   {name: 'Profil', route: '/profile'},
   {name: 'Einstellungen', route: '/einstellungen'},
   {name: 'BMI Rechner', route: '/bmi'},
+  {name: 'Wetter', route: '/weather'},
   {name: 'Shop', route: '/shop'}
 ]
 
