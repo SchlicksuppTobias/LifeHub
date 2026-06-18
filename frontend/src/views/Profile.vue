@@ -1,6 +1,17 @@
+```vue
 <template>
   <div class="profile">
-    <h1>Mein Profil</h1>
+
+    <div class="page-header">
+      <button
+        class="back-btn"
+        @click="$router.push('/dashboard')"
+      >
+        ← Zurück
+      </button>
+
+      <h1>Mein Profil</h1>
+    </div>
 
     <div class="profile-card">
 
@@ -261,6 +272,32 @@ async function saveProfile() {
   padding: 20px;
 }
 
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+.back-btn {
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: #e8e8e8;
+}
+
 .profile-card {
   background: #fff;
   padding: 2rem;
@@ -357,3 +394,4 @@ async function saveProfile() {
   color: #e74c3c;
 }
 </style>
+```
