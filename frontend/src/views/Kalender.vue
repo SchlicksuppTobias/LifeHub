@@ -1,6 +1,13 @@
+```vue
 <template>
   <div class="calendar-page">
     <div class="calendar-card">
+
+      <div class="card-header">
+        <button class="back-btn" @click="router.push('/dashboard')">
+          ← Zurück
+        </button>
+      </div>
 
       <div class="calendar-header">
         <button class="nav-btn" @click="previousMonth">
@@ -73,6 +80,9 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const today = new Date()
 
@@ -229,6 +239,25 @@ const formattedSelectedDate = computed(() => {
   box-shadow: 0 12px 35px rgba(0,0,0,0.08);
 }
 
+.card-header {
+  margin-bottom: 16px;
+}
+
+.back-btn {
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: #e8e8e8;
+}
+
 .calendar-header {
   display: flex;
   align-items: center;
@@ -360,3 +389,4 @@ const formattedSelectedDate = computed(() => {
   }
 }
 </style>
+```
