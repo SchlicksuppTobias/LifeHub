@@ -1,7 +1,17 @@
+```vue
 <template>
   <div class="news-container">
 
-    <h1>News erstellen</h1>
+    <div class="page-header">
+      <button
+        class="back-btn"
+        @click="$router.push('/dashboard')"
+      >
+        ← Zurück
+      </button>
+
+      <h1>News erstellen</h1>
+    </div>
 
     <form @submit.prevent="saveNews">
 
@@ -142,8 +152,30 @@ export default {
   padding: 20px;
 }
 
-h1 {
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin-bottom: 20px;
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+.back-btn {
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.back-btn:hover {
+  background: #e8e8e8;
 }
 
 .form-group {
@@ -165,14 +197,14 @@ textarea {
   box-sizing: border-box;
 }
 
-button {
+button[type="submit"] {
   padding: 12px 24px;
   border: none;
   cursor: pointer;
   border-radius: 6px;
 }
 
-button:disabled {
+button[type="submit"]:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -185,3 +217,4 @@ button:disabled {
 }
 
 </style>
+```
