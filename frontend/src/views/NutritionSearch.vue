@@ -1,7 +1,9 @@
+```vue
 <template>
   <div class="app">
     <header class="app-header">
       <div class="header-inner">
+        <button class="back-btn" @click="router.push('/dashboard')">← Zurück</button>
         <div class="logo">
           <span class="logo-icon">◈</span>
           <span class="logo-text">NutriBase</span>
@@ -70,7 +72,7 @@
           <!-- Card Header -->
           <div class="card-header" @click="toggle(i)">
             <div class="card-title-block">
-<!--              <span class="card-code">{{ item.bls_code }}</span>-->
+              <!--              <span class="card-code">{{ item.bls_code }}</span>-->
               <h3 class="card-name">{{ item.name_de }}</h3>
               <span class="card-name-en">{{ item.name_en }}</span>
             </div>
@@ -123,6 +125,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const items         = ref([])
 const loading       = ref(false)
@@ -343,6 +348,27 @@ function fmtVal(v) {
   padding: 2rem 1.5rem 1.5rem;
 }
 .header-inner { max-width: 900px; margin: 0 auto; }
+
+/* Back Button */
+.back-btn {
+  display: inline-block;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 7px 14px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+.back-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .logo { display: flex; align-items: center; gap: .6rem; margin-bottom: .35rem; }
 .logo-icon { font-size: 1.6rem; color: var(--accent); filter: drop-shadow(0 0 8px var(--accent)); }
 .logo-text {
@@ -529,3 +555,4 @@ function fmtVal(v) {
   .group-rows { grid-template-columns: 1fr; }
 }
 </style>
+```
