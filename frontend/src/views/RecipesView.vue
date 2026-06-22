@@ -101,7 +101,7 @@ async function fetchRecipes() {
 
 // 📄 Detailseite
 function openRecipe(id) {
-  router.push(`/recipes/${id}`)
+  router.push(`/rezepte/${id}`)
 }
 
 // 🧠 Zutaten hübsch anzeigen
