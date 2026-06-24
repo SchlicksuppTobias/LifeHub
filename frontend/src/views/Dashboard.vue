@@ -56,7 +56,13 @@ const items = [
       {label: 'Rezepte durchsuchen', route: '/rezepte/anzeigen'},
     ]
   },
-  {name: 'Einkaufslisten', route: '/einkauf'},
+  {
+    name: 'Einkaufslisten',
+    submenu: [
+      {label: 'Liste erstellen', route: '/einkaufsliste'},
+      {label: 'Liste öffnen (per Link)', route: '/einkaufsliste/oeffnen'},
+    ]
+  },
   {name: 'Nährwerttabelle', route: '/nutritionSearch'},
   {name: 'Kalender', route: '/kalender'},
   {name: 'Todo Liste', route: '/todo'},
