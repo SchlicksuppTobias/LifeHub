@@ -10,6 +10,9 @@ import Kalender from "@/views/Kalender.vue";
 import TodoApp from "@/views/TodoApp.vue";
 import BMI from "@/views/BMI.vue";
 import NewsEditor from "@/views/NewsEditor.vue";
+import Weather from "@/views/Weather.vue";
+import RecipeDetail from "@/views/RecipeDetail.vue";
+import Einkaufsliste from "@/views/Einkaufsliste.vue";
 
 const routes = [
   { path: '/', component: Home },
@@ -61,6 +64,26 @@ const routes = [
   {
     path: '/news',
     component: NewsEditor,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/rezepte/:id',
+    component: RecipeDetail,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/einkaufsliste/oeffnen',
+    component: () => import('@/views/EinkaufslisteOeffnen.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/einkaufsliste/:uniqueId?',
+    component: () => import('@/views/Einkaufsliste.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/weather',
+    component: Weather,
     meta: { requiresAuth: true }
   },
 
