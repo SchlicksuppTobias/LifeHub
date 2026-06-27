@@ -69,6 +69,45 @@ try {
 
     $stmt->execute();
 
+    // Zufällige Nummer generieren
+    $randomNumber = random_int(100000, 999999);
+
+// Titel erweitern
+    $title = $title . '_' . $randomNumber;
+
+// Verzeichnis anlegen, falls es nicht existiert
+    $uploadDir = __DIR__ . '/../../uploads/recipes';
+
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true);
+    }
+
+// Alle Daten für die Datei sammeln
+    $recipeData = [
+        'user_id' => $userId,
+        'title' => $title,
+        'image_path' => $imagePath,
+        'ingredients' => $ingredients,
+        'instructions' => $instructions,
+        'prep_time_value' => $prepTimeValue,
+        'prep_time_unit' => $prepTimeUnit,
+        'cook_time_value' => $cookTimeValue,
+        'cook_time_unit' => $cookTimeUnit,
+        'rest_time_value' => $restTimeValue,
+        'rest_time_unit' => $restTimeUnit,
+        'created_at' => date('Y-m-d H:i:s')
+    ];
+
+// Dateiname aus Titel erzeugen
+    $fileName = preg_replace('/[^a-zA-Z0-9_-]/', '_', $title) . '.json';
+    $filePath = $uploadDir . '/' . $fileName;
+
+// Datei speichern
+    file_put_contents(
+        $filePath,
+        json_encode($recipeData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+    );
+
     echo json_encode([
         'success' => true,
         'message' => 'Recipe saved successfully',
