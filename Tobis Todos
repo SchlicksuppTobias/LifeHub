@@ -21,25 +21,20 @@ Wetter:
 Wochenplaner:
 Dashboard:
 - BMI Rechner
-- Wetter
+- Wetter:
+- fix broken Backend abfrage
 - Wochenplaner Button
 Rezepte:
 - Popup für (gespeicherte Rezepte, Rezept erstellen, Rezept durchsuchen, etc.)
 Einkaufsliste:
 - ändern in Einkaufsliste
 Nährwerttabelle:
-- zurück Button
 Kalender:
-- zurück button
 TODO Liste:
--zurück button
 Sport Tracker:
 Gesundheit Tracker:
 Profil:
--zurück button
 BMI Rechner:
-- zurück button
-
 Einstellungen:
 Impressum:
 Datenschutz:
