@@ -20,7 +20,6 @@ Wetter:
 - Wetter API einbinden
 Wochenplaner:
 Dashboard:
-- BMI Rechner
 - Wetter:
 - fix broken Backend abfrage
 - Wochenplaner Button
