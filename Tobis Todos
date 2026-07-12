@@ -45,7 +45,6 @@ Upload von Nutri Daten Excel. (Magic einbauen damit datenbank auch mit anderen E
 CI/CD Pipelines aufsetzen
 - Community Forum
 - UserId zu Cookie hinzufügen und bei Rezept speichern und Co verwenden
-- GeoDB einbauen Postleitzahl, Name, Bundesland, Breitengrade und Längengrade für Wetter, etc. speichern
 - andere Repos von mir einbauen
 
 
