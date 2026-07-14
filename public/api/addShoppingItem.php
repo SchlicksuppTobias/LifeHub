@@ -36,7 +36,6 @@ try {
         exit;
     }
 
-    // Liste anhand der uniqueId auflösen
     $listStmt = $db->prepare("SELECT id FROM shopping_lists WHERE unique_id = ? LIMIT 1");
     $listStmt->bind_param('s', $uniqueId);
     $listStmt->execute();
