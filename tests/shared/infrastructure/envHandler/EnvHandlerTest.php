@@ -2,6 +2,7 @@
 
 namespace shared\infrastructure\envHandler;
 
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Tobias\LifeHub\shared\infrastructure\envHandler\EnvHandler;
 use Tobias\LifeHub\shared\interfaces\EnvHandlerInterface;
@@ -9,6 +10,9 @@ use Tobias\LifeHub\shared\interfaces\EnvProviderInterface;
 
 final class EnvHandlerTest extends TestCase
 {
+    /**
+     * @throws Exception
+     */
     public function testImplementsInterface(): void
     {
         $provider = $this->createStub(EnvProviderInterface::class);
