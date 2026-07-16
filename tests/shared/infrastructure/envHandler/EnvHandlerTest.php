@@ -22,6 +22,9 @@ final class EnvHandlerTest extends TestCase
         $this->assertInstanceOf(EnvHandlerInterface::class, $handler);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testGetEnvReturnsValueFromProvider(): void
     {
         $provider = $this->createStub(EnvProviderInterface::class);
