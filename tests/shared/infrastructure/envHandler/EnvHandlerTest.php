@@ -37,6 +37,9 @@ final class EnvHandlerTest extends TestCase
         $this->assertSame('localhost', $handler->getEnv('DB_HOST'));
     }
 
+    /**
+     * @throws Exception
+     */
     public function testGetEnvReturnsDefaultWhenProviderReturnsNull(): void
     {
         $provider = $this->createStub(EnvProviderInterface::class);
