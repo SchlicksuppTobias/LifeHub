@@ -56,6 +56,9 @@ final class EnvHandlerTest extends TestCase
         );
     }
 
+    /**
+     * @throws Exception
+     */
     public function testGetEnvPassesCorrectArguments(): void
     {
         $provider = $this->createMock(EnvProviderInterface::class);
