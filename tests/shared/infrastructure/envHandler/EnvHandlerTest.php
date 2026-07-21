@@ -44,7 +44,6 @@ final class EnvHandlerTest extends TestCase
     {
         $provider = $this->createStub(EnvProviderInterface::class);
 
-        // Stub kann nur Verhalten liefern
         $provider->method('get')
             ->willReturn('default-value');
 
