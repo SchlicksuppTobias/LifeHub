@@ -1,11 +1,7 @@
 <?php
 
 $url = "http://localhost:11434/api/generate";
-//$data = [
-//    "model" => "llama3:8b",
-//    "prompt" => "Erkläre Dependency Injection",
-//    "stream" => false
-//];
+
 
 $data = [
     "model" => "mistral:7b",
