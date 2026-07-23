@@ -9,7 +9,6 @@ you get an nutrition_inserts.sql file which can be added to docker/mariaDb folde
 For Frontend Vue will be used. 
 TODO'S:
 
-- Home page update with better design
 - Home Page news should be collected from Backend, Table in Database or new Database is needed.
 - Add Login to Home Page
 - Add Register to Home Page
