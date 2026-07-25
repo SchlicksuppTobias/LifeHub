@@ -10,6 +10,5 @@ For Frontend Vue will be used.
 TODO'S:
 
 - Home Page news should be collected from Backend, Table in Database or new Database is needed.
-- Add Login to Home Page
 - Add more features to the Dashboard after Login, like weather, calendar, TODO List, Food recipes, Food Ingrediants List search, Sport tracker, etc.
 - Create all Subpages
