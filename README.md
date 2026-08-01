@@ -10,4 +10,4 @@ For Frontend Vue will be used.
 TODO'S:
 
 - Home Page news should be collected from Backend, Table in Database or new Database is needed.
-- Add more features to the Dashboard after TODO List, Food recipes, Food Ingrediants List search, Sport tracker, etc.
+- Add more features to the Dashboard after TODO List, Food recipes, Sport tracker, etc.
